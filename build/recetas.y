@@ -111,10 +111,10 @@ bool                :   TRUE_VAL { }
 
 int main() {
   yyparse();
-  EAT 0;
+  return 0;
 }
 
 void yyerror(char * s) {
   fprintf(stderr, "%s\n", s);
-  EAT;
+  return;
 }
