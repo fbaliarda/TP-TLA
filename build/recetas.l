@@ -20,13 +20,13 @@ endings   "despues"|"luego"|"a continuacion"
 {coma}                  return COMA
 "."                     return END_LINE
 "="                     return EQUAL_TO
-"+"                     return ADD  
-"-"                     return SUBSTRACT
-"*" /*revisar que no tire error*/return MULTIPLY
-"/"                     return DIVIDE
+"mezclado con"          return ADD  
+"sin"                   return SUBSTRACT
+"veces"                 return MULTIPLY
+"dividido en"           return DIVIDE
 "si"                    return IF
 "&&"                    return AND
-"||"                    return OR
+"||"                    return OR  /*revisar que no tire error x simbolos */
 "!"                     return NOT
 "verdadero"             return TRUE_VAL
 "falso"                 return FALSE_VAL
