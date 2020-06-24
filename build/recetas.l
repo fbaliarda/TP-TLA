@@ -9,17 +9,41 @@ word      [a-zA-Z][_a-zA-Z0-9]*
 number    [0-9][0-9]*
 space     [ \t\n]
 ws        {space}+
-
+coma      [,]|[y]
+endings   "despues"|"luego"|"a continuacion"
 %%
 
 "(".*")"                /* comment */;
 {ws}                    /* white space */;
-"ingredientes:"         return MAIN;     
-"receta"                return INGREDIENTS_TOKEN;
+"Ingredientes:"         return INGREDIENTS_TOKEN;
 "mientras"              return WHILE
-","                     return COMA
+{coma}                  return COMA
 "."                     return END_LINE
-"son iguales"
+"="                     return EQUAL_TO
+"+"                     return ADD  
+"-"                     return SUBSTRACT
+"*" /*revisar que no tire error*/return MULTIPLY
+"/"                     return DIVIDE
+"si"                    return IF
+"&&"                    return AND
+"||"                    return OR
+"!"                     return NOT
+"verdadero"             return TRUE_VAL
+"falso"                 return FALSE_VAL
+"preparar"              return PREPARE
+"con"                   return WITH
+"usar"                  return USE
+"para"                  return FOR
+"Receta"                return RECIPE_TOKEN
+"es mas grande que"     return G_THAN/*revisar si funca con espacios*/
+"es mas chico que"      return L_THAN
+"es igual a"            return IS_EQUAL
+"entonces"              return THEN
+"hacer"                 return DO//no like
+{endings}               return END
+"comer"                 return EAT
+
+
 \"[^\"]*\"              {char *str = malloc(strlen(yytext)+1);
                         strcpy(str, yytext);
                         yylval.str = str;
