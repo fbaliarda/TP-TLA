@@ -14,10 +14,12 @@ ws        {space}+
 
 "(".*")"                /* comment */;
 {ws}                    /* white space */;
-"ingredients:"          return MAIN;     
-"recipe"                return INGREDIENTS_TOKEN;
-
-
+"ingredientes:"         return MAIN;     
+"receta"                return INGREDIENTS_TOKEN;
+"mientras"              return WHILE
+","                     return COMA
+"."                     return END_LINE
+"son iguales"
 \"[^\"]*\"              {char *str = malloc(strlen(yytext)+1);
                         strcpy(str, yytext);
                         yylval.str = str;
