@@ -44,7 +44,7 @@ recipe_sentences    :   instruction { }
 
 instruction         :   assignment END_LINE { }
                     |   call END_LINE { }
-                    |   EAT END_LINE { }
+                    |   return END_LINE { }
                     |   if { }
                     |   while { }
 
