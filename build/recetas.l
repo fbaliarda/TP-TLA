@@ -14,7 +14,6 @@ endings   "despues"|"luego"|"a continuacion"
 %%
 
 "(".*")"                /* comment */;
-{ws}                    /* white space */;
 "Ingredientes:"         return INGREDIENTS_TOKEN;
 "mientras"              return WHILE
 {coma}                  return COMA
@@ -42,6 +41,7 @@ endings   "despues"|"luego"|"a continuacion"
 "hacer"                 return DO//no like
 {endings}               return END
 "comer"                 return EAT
+{ws}                    /* white space */;
 
 
 \"[^\"]*\"              {char *str = malloc(strlen(yytext)+1);
