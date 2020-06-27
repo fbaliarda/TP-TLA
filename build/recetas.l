@@ -10,7 +10,7 @@ number    [0-9][0-9]*
 space     [ \t\n]
 ws        {space}+
 coma      [,]
-endings   "despues"|"luego"|"a continuacion"
+endings   "despues"|"luego"|"a continuacion"|"fin"
 %%
 
 "(".*")"                
@@ -36,12 +36,12 @@ endings   "despues"|"luego"|"a continuacion"
 "con"                   return WITH;
 "usar"                  return USE;
 "para"                  return FOR;
-"Receta:"                return RECIPE_TOKEN;
-"es mas grande que"     return G_THAN;
-"es mas chico que"      return L_THAN;
+"Receta:"               return RECIPE_TOKEN;
+"mayor que"             return G_THAN;
+"menor que"             return L_THAN;
 "es igual a"            return IS_EQUAL;
-"entonces:"              return THEN;
-"hacer:"                 return DO;
+"entonces:"             return THEN;
+"hacer:"                return DO;
 {endings}               return END;
 "comer"                 return EAT;
 {ws}                    /* white space */;

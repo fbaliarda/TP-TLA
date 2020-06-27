@@ -127,20 +127,17 @@ instruction         :   assignment END_LINE                     {   $$ = nodeNew
 assignment          :   USE ID FOR expression                   {   $$ = nodeNew("assignment");
 															    	nodeAppend($$, nodeNewLeaf($2, _variable));
 															    	nodeAppend($$, nodeNewLeaf(NULL, _equal));
-															    	nodeAppend($$, $4);
-															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));			
+															    	nodeAppend($$, $4);			
 															    }
                     |   USE ID FOR string                       {   $$ = nodeNew("assignment");
 															    	nodeAppend($$, nodeNewLeaf($2, _variable));
 															    	nodeAppend($$, nodeNewLeaf(NULL, _equal));
-															    	nodeAppend($$, $4);
-															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));			
+															    	nodeAppend($$, $4);			
 															    }
                     |   USE ID FOR bool                         {   $$ = nodeNew("assignment");
 															    	nodeAppend($$, nodeNewLeaf($2, _variable));
 															    	nodeAppend($$, nodeNewLeaf(NULL, _equal));
-															    	nodeAppend($$, $4);
-															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));			
+															    	nodeAppend($$, $4);			
 															    }
                     ;
 
@@ -190,23 +187,20 @@ arg                 :   expression { }
 
 return              :   EAT expression 					    	{   $$ = nodeNew("return");
 															    	nodeAppend($$, nodeNewLeaf(NULL, _return));
-																	nodeAppend($$, $2);
-															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));														
+																	nodeAppend($$, $2);													
 															    }
                     |   EAT string                              {   $$ = nodeNew("return");
 															    	nodeAppend($$, nodeNewLeaf(NULL, _return));
-																	nodeAppend($$, $2);
-															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));															
+																	nodeAppend($$, $2);														
 															    }
                     |   EAT IF condition                        {   $$ = nodeNew("return");
 															    	nodeAppend($$, nodeNewLeaf(NULL, _return));
-																	nodeAppend($$, $3);
-															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));															
+																	nodeAppend($$, $3);															
 															    }
                     ;
 
 condition           :   cond_term 							    {   $$ = nodeNew("condition");
-																	/*nodeAppend($$, $1);*/
+																	nodeAppend($$, $1);
 															    }
                     |   cond_term AND condition                 {   $$ = nodeNew("condition");
 																	nodeAppend($$, $1);
@@ -220,7 +214,7 @@ condition           :   cond_term 							    {   $$ = nodeNew("condition");
 															    }
                     |   NOT condition 						    {   $$ = nodeNew("condition");
                     												nodeAppend($$, nodeNewLeaf(NULL, _not));
-																	/*nodeAppend($$, $1);*/
+																	nodeAppend($$, $2);
 															    }
                     ;
 

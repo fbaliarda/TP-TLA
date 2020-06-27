@@ -18,8 +18,9 @@ typedef enum type {
 } type;
 
 static char * types[MAX_DATA_TYPES] = {
-   "branch", "variable", "literal", "int main", "(", ")", "{", "}", ";", "=", "+", "-", "*", "/", "return"
-   "&&", "||", "!", "==", ">", "<", "if", "while", "1", "0", "int", "char *", "bool"};
+   "branch", "variable", "literal", "int main", "(", ")", "{\n", "}\n", ";\n", "=", "+", "-", "*", "/", "return",
+   "&&", "||", "!", "==", ">", "<", "if", "while", "1", "0", "int", "char *", "bool"
+ };
 
 typedef struct Node Node;
 struct Node {

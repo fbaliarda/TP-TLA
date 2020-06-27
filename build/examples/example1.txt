@@ -1,6 +1,0 @@
-Ingredientes:
-    numero1 = 2.
-    boolean = true.
-    expresion = 2 + numero1.
-    string = "hola".
-    wololo.

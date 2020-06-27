@@ -11,7 +11,7 @@ LEX=lex
 all: yacc lex parser cleaner
 
 yacc: 
-	$(YACC) -d $(YACC_FILE)
+	$(YACC) -d  $(YACC_FILE)
 
 lex: 
 	$(LEX) $(LEX_FILE)
