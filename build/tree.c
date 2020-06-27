@@ -6,8 +6,7 @@
 #include <stdio.h>
 #include "tree.h"
 
-
-Node * nodeTypeNew(char * data, type type) {
+Node * nodeNewLeaf(char * data, type type) {
   Node * n = (Node *)malloc(sizeof(Node));
   
   if (n == NULL){
@@ -23,11 +22,11 @@ Node * nodeTypeNew(char * data, type type) {
 }
 
 Node * nodeNew(char* data) {
-  Node * n = nodeTypeNew(data, notleaf_);
+  Node * n = nodeNewLeaf(data, _branch);
   return n;
 }
 
-Node* nodeInsertBefore(Node *parent, Node *sibling, Node *node)
+Node * nodeInsertBefore(Node *parent, Node *sibling, Node *node)
 {
   if (! (parent && node) || (sibling && sibling->parent == parent))
     return NULL;
@@ -60,7 +59,7 @@ Node* nodeInsertBefore(Node *parent, Node *sibling, Node *node)
   return node;
 }
 
-Node* nodeRoot(Node *node)
+Node * nodeRoot(Node *node)
 {
   if (! node)
     return NULL;
@@ -69,7 +68,7 @@ Node* nodeRoot(Node *node)
   return node;
 }
 
-Node* nodeFind(Node *node, void *data, int (*compare)(void *a, void *b))
+Node * nodeFind(Node *node, void *data, int (*compare)(void *a, void *b))
 {
   if (! node)
     return node;
@@ -82,7 +81,7 @@ Node* nodeFind(Node *node, void *data, int (*compare)(void *a, void *b))
   return NULL;
 }
 
-Node* nodeNthChild(Node *node, int n)
+Node * nodeNthChild(Node *node, int n)
 {
   if (! node)
     return NULL;
@@ -106,7 +105,7 @@ int nodeTotal(Node  *root)
   return t;
 }
 
-void  nodeUnlink(Node *node)
+void nodeUnlink(Node *node)
 {
   if (! node)
     return;
@@ -123,7 +122,7 @@ void  nodeUnlink(Node *node)
   node->parent = NULL;
 }
 
-void  nodeFree(Node *node)
+void nodeFree(Node *node)
 {
   if (! node)
     return;
@@ -134,7 +133,7 @@ void  nodeFree(Node *node)
   free(node);
 }
 
-void  nodeDestroy(Node *root)
+void nodeDestroy(Node *root)
 {
   if (! root)
     return;
@@ -157,19 +156,20 @@ int numberOfChildren(Node * node){
 void printTree(Node * node){
 
   if(node == NULL){
-    printf("%s\n", "ERROR 1");
+    printf("%s\n", "ERROR");
     return;
   }
 
-  if(node->type != notleaf_){
-
-    if(node->type != int_ && node->type != string_ && node->type != id_) {
-      node->data = types[node->type];
-    }
+  if(node->type != _branch){
 
     if(node->data == NULL){
-      printf("%s\n", "ERROR 2");
+      if(node->type >= 0 && node->type < MAX_DATA_TYPES) {
+      	node->data = types[node->type];
+      }
+      else {
+      	printf("%s\n", "ERROR");
       return;
+      }
     }
 
     printf("%s ", node->data );
@@ -178,10 +178,10 @@ void printTree(Node * node){
 
   }
 
-  if(node->type == notleaf_){
+  if(node->type == _branch){
 
     if(node->children == NULL){
-      printf("%s\n", "ERROR 3");
+      printf("%s\n", "ERROR");
       return;
     }
 

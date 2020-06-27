@@ -7,20 +7,19 @@
 
 #include <stdlib.h>
 
+#define MAX_DATA_TYPES 256
+
 typedef enum type {
 
-  while_, lparen_, rparen_, lbrack_, rbrack_, if_, semicolon_, equal_, or_, and_, not_,
-  isequal_, diff_, lthan_,lethan_, gthan_, gethan_, plus_, minus_, mult_, div_, mod_, 
-  string_t_, int_t_, bool_t_, print_,  true_, false_, id_, int_, string_, notleaf_,
-  main_, return_, scan_, comma_, empty_, exit_
+  _branch, _variable, _literal, _main, _opar, _cpar, _obracket, _cbracket, _endline,
+  _equal, _plus, _minus, _multiplication, _division, _return, _and, _or, _not, _is_equal, _is_greater,
+  _is_lower, _if, _while, _one, _zero, _integer, _string, _boolean
 
 } type;
 
-static char * types[255] = {
-  "while", "( ", ")", "{\n", " }\n", "if", ";\n", "= ", "|| ", "&& ", "! ",
-  "== ", "!= ", "< ", "<= ", "> ", ">= ", "+ ", "- ", "* ", "/ ", "% ",
-  "char * ", "int ","int ","printf", "1 ", "0 ","","","", "not Leaf ",
-  "int main", "return ", "readStr", ", ", "", "exitProgram();"};
+static char * types[MAX_DATA_TYPES] = {
+   "branch", "variable", "literal", "int main", "(", ")", "{", "}", ";", "=", "+", "-", "*", "/", "return"
+   "&&", "||", "!", "==", ">", "<", "if", "while", "1", "0", "int", "char *", "bool"};
 
 typedef struct Node Node;
 struct Node {
@@ -38,7 +37,7 @@ Node * nodeNew(char * data);
 
 /* Creates a new Node containing the given data and given type */
 /** Returns NULL on error **/
-Node * nodeTypeNew(char * data, type type);
+Node * nodeNewLeaf(char * data, type type);
 
 /* Inserts a Node as the last child of the given parent */
 /** Returns NULL on error **/
