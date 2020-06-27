@@ -45,7 +45,6 @@ program             :   ingredients recipe          			{   $$ = nodeNew("program
 																 	nodeAppend($$, nodeNewLeaf(NULL, _obracket));
 																	nodeAppend($$, $1);
 																	nodeAppend($$, $2);
-																	nodeAppend($$, nodeNewLeaf(NULL,_freeMemory));
 																	nodeAppend($$, nodeNewLeaf(NULL, _cbracket));
 																	printIncludes();
 																	printTree($$);
@@ -117,6 +116,7 @@ instruction         :   assignment END_LINE                     {   $$ = nodeNew
 															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));															     
 															    }
                     |   return END_LINE                         {   $$ = nodeNew("instruction");
+																	nodeAppend($$, nodeNewLeaf(NULL,_freeMemory));
 															    	nodeAppend($$, $1);	
 															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));															     
 															    }
