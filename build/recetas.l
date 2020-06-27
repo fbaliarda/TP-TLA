@@ -15,11 +15,12 @@ endings   "despues"|"luego"|"a continuacion"|"fin"
 
 "(".*")"                
 "Ingredientes:"         return INGREDIENTS_TOKEN;
-"Entero"                return T_INTEGER;
-"Cadena"                return T_STRING;
-"Booleano"              return T_BOOLEAN;
+"nuevo entero"          return TO_INT;
+"entero"                return T_INTEGER;
+"cadena"                return T_STRING;
+"booleano"              return T_BOOLEAN;
 "mientras"              return WHILE;
-{coma}                  return COMA;
+{coma}                  return COMMA;
 "."                     return END_LINE;
 "="                     return EQUAL_TO;
 "mezclado con"          return ADD;
@@ -29,7 +30,7 @@ endings   "despues"|"luego"|"a continuacion"|"fin"
 "si"                    return IF;
 "y"                     return AND;
 "o"                     return OR;
-"no es"                 return NOT;
+"no se cumple que"      return NOT;
 "verdadero"             return TRUE_VAL;
 "falso"                 return FALSE_VAL;
 "preparar"              return PREPARE;
@@ -37,13 +38,16 @@ endings   "despues"|"luego"|"a continuacion"|"fin"
 "usar"                  return USE;
 "para"                  return FOR;
 "Receta:"               return RECIPE_TOKEN;
-"mayor que"             return G_THAN;
-"menor que"             return L_THAN;
+"es mas grande que"     return G_THAN;
+"es mas chico que"      return L_THAN;
 "es igual a"            return IS_EQUAL;
 "entonces:"             return THEN;
 "hacer:"                return DO;
-{endings}               return END;
 "comer"                 return EAT;
+"lectura"               return READ;
+"escritura"             return WRITE;
+{endings}               return END;
+
 {ws}                    /* white space */;
 
 

@@ -12,14 +12,14 @@
 typedef enum type {
 
   _branch, _variable, _literal, _main, _opar, _cpar, _obracket, _cbracket, _endline,
-  _equal, _plus, _minus, _multiplication, _division, _return, _and, _or, _not, _is_equal, _is_greater,
-  _is_lower, _if, _while, _one, _zero, _integer, _string, _boolean
+  _equal, _plus, _minus, _multiplication, _division, _comma, _return, _and, _or, _not, _is_equal, _is_greater,
+  _is_lower, _if, _while, _one, _zero, _integer, _string, _boolean, _readStdIn, _writeStdIn, _atoi, _freeMemory
 
 } type;
 
 static char * types[MAX_DATA_TYPES] = {
-   "branch", "variable", "literal", "int main", "(", ")", "{\n", "}\n", ";\n", "=", "+", "-", "*", "/", "return",
-   "&&", "||", "!", "==", ">", "<", "if", "while", "1", "0", "int", "char *", "bool"
+   "branch", "variable", "literal", "int main", "(", ")", "{\n", "}\n", ";\n", "=", "+", "-", "*", "/", ",", "return",
+   "&&", "||", "!", "==", ">", "<", "if", "while", "1", "0", "int", "char *", "bool", "readStdInput", "printf", "atoi", "freeProgramMemory();\n"
  };
 
 typedef struct Node Node;
@@ -76,5 +76,6 @@ int numberOfChildren(Node * node);
 
 void printTree(Node * node);
 
+void printIncludes();
 
 #endif /* node.h */

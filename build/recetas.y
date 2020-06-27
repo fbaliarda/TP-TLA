@@ -23,6 +23,7 @@
 %token AND OR NOT
 %token IS_EQUAL G_THAN L_THAN TRUE_VAL FALSE_VAL
 %token T_INTEGER T_STRING T_BOOLEAN
+%token READ WRITE TO_INT
 
 %type <node> program ingredients ingredient_sentences
 %type <node> ingredient recipe recipe_sentences instruction
@@ -37,14 +38,16 @@
 
 %%
 
-program             :   ingredients recipe                      {   $$ = nodeNew("program");
+program             :   ingredients recipe          			{   $$ = nodeNew("program");
 																 	nodeAppend($$, nodeNewLeaf(NULL, _main));
 																	nodeAppend($$, nodeNewLeaf(NULL, _opar));
 																	nodeAppend($$, nodeNewLeaf(NULL, _cpar));
 																 	nodeAppend($$, nodeNewLeaf(NULL, _obracket));
 																	nodeAppend($$, $1);
 																	nodeAppend($$, $2);
+																	nodeAppend($$, nodeNewLeaf(NULL,_freeMemory));
 																	nodeAppend($$, nodeNewLeaf(NULL, _cbracket));
+																	printIncludes();
 																	printTree($$);
 															    }
                     ;
@@ -147,8 +150,8 @@ expression          :   ID 									    {   $$ = nodeNew("expression");
                     |   NUM                                     {   $$ = nodeNew("expression");
 																	nodeAppend($$, nodeNewLeaf($1, _literal));															
 															    }
-                    |   call 								    {   $$ = nodeNew("expression");
-																	nodeAppend($$, $1);															
+                    |   call                           			{   $$ = nodeNew("expression");
+															    	nodeAppend($$, $1);													     
 															    }
                     |   expression ADD expression 			    {   $$ = nodeNew("expression");
 																	nodeAppend($$, $1);	
@@ -172,17 +175,37 @@ expression          :   ID 									    {   $$ = nodeNew("expression");
 															    }
                     ;
 
-call                :   PREPARE ID { } /* TODO */
-                    |   PREPARE ID WITH recipe_args { }
+call                :   PREPARE READ 							{	$$ = nodeNew("call");
+																	nodeAppend($$, nodeNewLeaf(NULL, _readStdIn)); 
+																	nodeAppend($$, nodeNewLeaf(NULL, _opar));nodeAppend($$, nodeNewLeaf(NULL, _cpar));
+																}
+                    |   PREPARE WRITE WITH recipe_args 			{	$$ = nodeNew("call");
+																	nodeAppend($$, nodeNewLeaf(NULL, _writeStdIn)); nodeAppend($$, nodeNewLeaf(NULL, _opar));
+																	nodeAppend($$, $4); nodeAppend($$, nodeNewLeaf(NULL, _cpar));
+																}
+					|	PREPARE TO_INT WITH arg 				{	$$ = nodeNew("call");
+																	nodeAppend($$, nodeNewLeaf(NULL, _atoi)); nodeAppend($$, nodeNewLeaf(NULL, _opar));
+																	nodeAppend($$, $4); nodeAppend($$, nodeNewLeaf(NULL, _cpar));
+																}
                     ;
 
-recipe_args         :   arg { }
-                    |   arg COMMA recipe_args { }
+recipe_args         :   arg 									{	$$ = nodeNew("recipe_args");
+																	nodeAppend($$, $1);
+																}
+                    |   arg COMMA recipe_args 					{	$$ = nodeNew("recipe_args");
+																	nodeAppend($$, $1);nodeAppend($$,nodeNewLeaf(NULL,_comma));nodeAppend($$,$3);
+																}
                     ;
 
-arg                 :   expression { }
-                    |   string { }
-                    |   bool { }
+arg                 :   expression 								{	$$ = nodeNew("arg");
+																	nodeAppend($$, $1);
+																}
+                    |   string 									{	$$ = nodeNew("arg");
+																	nodeAppend($$, $1);
+																}
+                    |   bool 									{	$$ = nodeNew("arg");
+																	nodeAppend($$, $1);
+																}
                     ;
 
 return              :   EAT expression 					    	{   $$ = nodeNew("return");
@@ -226,11 +249,11 @@ cond_term           :   bool 								    {   $$ = nodeNew("cond_term");
 														        	nodeAppend($$, $2);
 														        	nodeAppend($$, $3);
 															    }		
-                    |   call                                    {   $$ = nodeNew("cond_term");
-														        	nodeAppend($$, $1);
-															    }		
                     |   ID                                      {   $$ = nodeNew("cond_term");
 														        	nodeAppend($$, nodeNewLeaf($1, _variable));
+															    }
+                    |   call                           			{   $$ = nodeNew("cond_term");
+															    	nodeAppend($$, $1);													     
 															    }		
                     ;
 

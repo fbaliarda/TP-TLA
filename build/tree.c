@@ -195,7 +195,7 @@ void printTree(Node * node){
 
 }
 
-void printHeaders(){
-  printf("#include \"./include/dugan.h\"\n");
+void printIncludes(){
+  printf("#include \"./include/rclib.h\"\n");
 }
 
