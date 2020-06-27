@@ -30,6 +30,11 @@
 %type <node> return condition cond_term cmp if while bool
 %type <node> type string
 
+%left ADD SUBSTRACT
+%left MULTIPLY DIVIDE
+%left IS_EQUAL G_THAN L_THAN
+%left OR AND
+
 %%
 
 program             :   ingredients recipe                      {   $$ = nodeNew("program");
@@ -183,7 +188,7 @@ arg                 :   expression { }
                     |   bool { }
                     ;
 
-return              :   EAT expression 						    {   $$ = nodeNew("return");
+return              :   EAT expression 					    	{   $$ = nodeNew("return");
 															    	nodeAppend($$, nodeNewLeaf(NULL, _return));
 																	nodeAppend($$, $2);
 															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));														
@@ -193,11 +198,11 @@ return              :   EAT expression 						    {   $$ = nodeNew("return");
 																	nodeAppend($$, $2);
 															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));															
 															    }
-                    |   EAT condition                           {   $$ = nodeNew("return");
+                    |   EAT IF condition                        {   $$ = nodeNew("return");
 															    	nodeAppend($$, nodeNewLeaf(NULL, _return));
-																	nodeAppend($$, $2);
+																	nodeAppend($$, $3);
 															    	nodeAppend($$, nodeNewLeaf(NULL, _endline));															
-															    } 
+															    }
                     ;
 
 condition           :   cond_term 							    {   $$ = nodeNew("condition");
@@ -267,7 +272,7 @@ while               :   WHILE condition DO recipe_sentences END {   $$ = nodeNew
 																	nodeAppend($$, nodeNewLeaf(NULL, _cbracket));
 																}
 
-
+					;
 bool                :   TRUE_VAL 								{   $$ = nodeNew("bool");
 																	nodeAppend($$, nodeNewLeaf(NULL, _one));
 																}

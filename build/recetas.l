@@ -9,7 +9,7 @@ word      [a-zA-Z][_a-zA-Z0-9]*
 number    [0-9][0-9]*
 space     [ \t\n]
 ws        {space}+
-coma      [,]|[y]
+coma      [,]
 endings   "despues"|"luego"|"a continuacion"
 %%
 
@@ -27,21 +27,21 @@ endings   "despues"|"luego"|"a continuacion"
 "veces"                 return MULTIPLY;
 "dividido en"           return DIVIDE;
 "si"                    return IF;
-"&&"                    return AND;
-"||"                    return OR;  /*revisar que no tire error x simbolos */
-"!"                     return NOT;
+"y"                     return AND;
+"o"                     return OR;
+"no es"                 return NOT;
 "verdadero"             return TRUE_VAL;
 "falso"                 return FALSE_VAL;
 "preparar"              return PREPARE;
 "con"                   return WITH;
 "usar"                  return USE;
 "para"                  return FOR;
-"Receta"                return RECIPE_TOKEN;
-"es mas grande que"     return G_THAN;  /*revisar si funca con espacios*/
+"Receta:"                return RECIPE_TOKEN;
+"es mas grande que"     return G_THAN;
 "es mas chico que"      return L_THAN;
 "es igual a"            return IS_EQUAL;
-"entonces"              return THEN;
-"hacer"                 return DO; /*no like*/
+"entonces:"              return THEN;
+"hacer:"                 return DO;
 {endings}               return END;
 "comer"                 return EAT;
 {ws}                    /* white space */;
