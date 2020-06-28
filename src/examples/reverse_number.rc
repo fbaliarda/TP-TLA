@@ -1,0 +1,19 @@
+Ingredientes:
+	cadena buffer.
+	entero num.
+    entero cociente.
+	entero reverse = 0.
+    entero modulo.
+Receta:
+	preparar escritura con "Ingrese un numero para revertir: ".
+	usar buffer para preparar lectura.
+	usar num para preparar nuevo entero con buffer.
+	mientras no se cumple que num es igual a 0:
+        usar reverse para 10 veces reverse.
+        usar cociente para num dividido en 10.
+        usar modulo para num sin 10 veces cociente.
+		usar reverse para reverse mezclado con modulo.
+        usar num para num dividido en 10.
+	fin
+    preparar escritura con "el reverso es %d\n", reverse.
+	comer num.
