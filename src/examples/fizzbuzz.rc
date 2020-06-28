@@ -1,0 +1,34 @@
+Ingredientes:
+    entero num = 1.
+    entero dividido3.
+    entero dividido5.
+    entero resto3.
+    entero resto5.
+    booleano esDivisible.
+    cadena buffer.
+    entero tope.
+Receta:
+    preparar escritura con "Ingrese hasta que numero contar: ".
+    usar buffer para preparar lectura.
+    usar tope para preparar nuevo entero con buffer.
+    mientras num es mas chico que tope mezclado con 1 hacer:
+        usar esDivisible para falso.
+        usar dividido3 para num dividido en 3.
+        usar dividido5 para num dividido en 5.
+        usar resto3 para num sin 3 veces dividido3.
+        usar resto5 para num sin 5 veces dividido5.
+        si resto3 es igual a 0 entonces:
+            preparar escritura con "Fizz".
+            usar esDivisible para verdadero.
+        luego
+        si resto5 es igual a 0 entonces:
+            preparar escritura con "Buzz".
+            usar esDivisible para verdadero.
+        luego
+        si no se cumple que esDivisible entonces:
+            preparar escritura con "%d",num.
+        luego
+        preparar escritura con "\n".
+        usar num para num mezclado con 1.
+    luego
+    comer num.
