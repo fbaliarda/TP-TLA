@@ -1,6 +1,6 @@
-<program> 			   ::= <ingredients> <recipe>          			
+<program>              ::= <ingredients> <recipe>          			
                     
-<ingredients> 		   ::= "Ingredientes:" <ingredient_sentences>
+<ingredients>          := "Ingredientes:" <ingredient_sentences>
 
 <ingredient_sentences> ::= <ingredient> | <ingredient> <ingredient_sentences>         
 
@@ -9,17 +9,17 @@
 					       <type> [a-zA-Z][_a-zA-Z0-9]* "=" <string> "." |
 				 	       <type> [a-zA-Z][_a-zA-Z0-9]* "=" <bool> "."        
 
-<recipe> 			   ::= "Receta:" <recipe_sentences>           
+<recipe>               ::= "Receta:" <recipe_sentences>           
 
-<recipe_sentences> 	   ::= <instruction> | <instruction> <recipe_sentences>    
+<recipe_sentences>     ::= <instruction> | <instruction> <recipe_sentences>    
 
-<instruction> 		   ::= <assignment> "." | <call> "." | <return> "." | <if> | <while>                              
+<instruction>          ::= <assignment> "." | <call> "." | <return> "." | <if> | <while>                              
 
-<assignment> 		   ::= "usar" [a-zA-Z][_a-zA-Z0-9]* "para" <expression> |
+<assignment>           ::= "usar" [a-zA-Z][_a-zA-Z0-9]* "para" <expression> |
 						   "usar" [a-zA-Z][_a-zA-Z0-9]* "para" <string> |
 						   "usar" [a-zA-Z][_a-zA-Z0-9]* "para" <bool>        
 
-<expression> 	       ::= [a-zA-Z][_a-zA-Z0-9]* |
+<expression>           ::= [a-zA-Z][_a-zA-Z0-9]* |
 						   [0-9][0-9]* |
 						   <call> |
 						   <expression> "mezclado con" <expression> | 
@@ -27,31 +27,31 @@
 						   <expression> "veces" <expression> | 
 						   <expression> "dividido en" <expression>     
 
-<call> 				   ::= "preparar" "lectura" | 
+<call>                 ::= "preparar" "lectura" | 
 						   "preparar" "escritura" "con" <recipe_args> | 
 						   "preparar" "nuevo entero" "con" <arg> 			
 
-<recipe_args> 		   ::= <arg> | <arg> "," <recipe_args> 				
+<recipe_args>          ::= <arg> | <arg> "," <recipe_args> 				
 
-<arg> 				   ::= <expression> | <string> | <bool> 							
+<arg>                  ::= <expression> | <string> | <bool> 							
 
-<return> 			   ::= "comer" <expression> | "comer" <string> | "comer" "si" <condition>                  
+<return>               ::= "comer" <expression> | "comer" <string> | "comer" "si" <condition>                  
 
-<condition> 		   ::= <cond_term> | 
+<condition>            ::= <cond_term> | 
 						   <cond_term> "y" <condition> | 
 						   <cond_term> "o" <condition> | 
 						   "no se cumple que" <condition> 					
 
-<cond_term> 	       ::= <bool> | <expression> <cmp> <expression> | [a-zA-Z][_a-zA-Z0-9]* | <call>                           	
+<cond_term>            ::= <bool> | <expression> <cmp> <expression> | [a-zA-Z][_a-zA-Z0-9]* | <call>                           	
 
-<cmp> 				   ::= "es igual a" | "es mas grande que" | "es mas chico que"							
+<cmp>                  ::= "es igual a" | "es mas grande que" | "es mas chico que"							
 
-<if>   				   ::= "si" <condition> "entonces:" <recipe_sentences> [despues|luego|a continuacion|fin]
+<if>                   ::= "si" <condition> "entonces:" <recipe_sentences> [despues|luego|a continuacion|fin]
 
-<while> 			   ::= "mientras" <condition> "hacer" <recipe_sentences> [despues|luego|a continuacion|fin]
+<while>                ::= "mientras" <condition> "hacer" <recipe_sentences> [despues|luego|a continuacion|fin]
 
-<bool> 				   ::= "verdadero" | "falso"						
+<bool>                 ::= "verdadero" | "falso"						
 
-<type> 				   ::= "entero"| "cadena" | "booleano"                      
+<type>                 ::= "entero"| "cadena" | "booleano"                      
 
-<string> 			   ::= \"[^\"]*\"		
+<string>               ::= \"[^\"]*\"		
