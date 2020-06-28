@@ -8,14 +8,17 @@ static int currentMemorySize = 0;
 
 char* readStdInput() {
   char *buffer = malloc(BUFFER_SIZE-1);
-  programMemory = realloc(programMemory, ++currentMemorySize);
+  programMemory = realloc(programMemory, ++currentMemorySize * sizeof(char *));
   fgets(buffer, BUFFER_SIZE-1, stdin);
+  programMemory[currentMemorySize - 1] = buffer;
   return buffer;
 }
 
 void freeProgramMemory(){
   for(int i = 0; i < currentMemorySize; i++){
-    free(*(programMemory + i));
+    free(programMemory[i]);
   }
-  free(programMemory);
+  if(programMemory != NULL){
+    free(programMemory);
+  }
 }
