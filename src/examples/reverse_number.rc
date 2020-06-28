@@ -15,5 +15,5 @@ Receta:
 		usar reverse para reverse mezclado con modulo.
         usar num para num dividido en 10.
 	fin
-    preparar escritura con "el reverso es %d\n", reverse.
+    preparar escritura con "el reverso es: %d\n", reverse.
 	comer num.
