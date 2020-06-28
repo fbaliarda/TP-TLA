@@ -8,4 +8,4 @@ Esta instrucción compila el lenguaje y genera el archivo “recetas” que cont
   		
 				$> ./reCtas.sh nombreReceta.rc program.out
 
-Donde reCtas.sh es el archivo bash que compila y nombreReceta.rc es el nombre del archivo que contiene la receta a compilar. Esto genera el ejecutable program.out y el archivo parsedCode.c que contiene la receta en lenguaje C.
+Donde reCtas.sh es el archivo bash que compila y nombreReceta.rc es el nombre del archivo que contiene la receta a compilar. Esto genera el ejecutable program.out, donde program es el nombre deseado para el ejecutable, y el archivo parsedCode.c que contiene la receta en lenguaje C.
