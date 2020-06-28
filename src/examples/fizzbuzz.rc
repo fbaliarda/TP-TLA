@@ -18,16 +18,19 @@ Receta:
         usar resto3 para num sin 3 veces dividido3.
         usar resto5 para num sin 5 veces dividido5.
         si resto3 es igual a 0 entonces:
+            (Es divisible por 3.)
             preparar escritura con "Fizz".
             usar esDivisible para verdadero.
         luego
         si resto5 es igual a 0 entonces:
+            (Es divisible por 5.)
             preparar escritura con "Buzz".
             usar esDivisible para verdadero.
-        luego
+        despues
         si no se cumple que esDivisible entonces:
+            (No es divisible por 3 ni 5)
             preparar escritura con "%d",num.
-        luego
+        a continuacion
         preparar escritura con "\n".
         usar num para num mezclado con 1.
     luego

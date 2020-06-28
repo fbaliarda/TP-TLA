@@ -5,6 +5,7 @@ Ingredientes:
     entero num3.
     entero max = 0.
 Receta:
+    (Esto es un comentario)
     preparar escritura con "Ingrese el primer numero: ".
     usar buffer para preparar lectura.
     usar num1 para preparar nuevo entero con buffer.
@@ -16,20 +17,24 @@ Receta:
     usar num3 para preparar nuevo entero con buffer.
     si num1 es mas grande que num2 o num1 es igual a num2 entonces:
         si num1 es mas grande que num3 o num1 es igual a num3 entonces:
+            (num1 es el maximo.)
             preparar escritura con "El maximo es: %d\n",num1.
             usar max para num1.
         luego
         si num3 es mas grande que num1 entonces:
+            (num3 es el maximo.)
             preparar escritura con "El maximo es: %d\n",num3.
             usar max para num3.
         luego
     luego
     si num2 es mas grande que num1 entonces:
         si num2 es mas grande que num3 o num2 es igual a num3 entonces:
+            (num2 es el maximo.)
             preparar escritura con "El maximo es: %d\n",num2.
             usar max para num2.
         luego
         si num3 es mas grande que num2 entonces:
+            (num3 es el maximo.)
             preparar escritura con "El maximo es: %d\n",num3.
             usar max para num3.
         luego

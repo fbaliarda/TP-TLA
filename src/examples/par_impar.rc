@@ -9,9 +9,11 @@ Receta:
 	si num es mas grande que 0 entonces:
 		usar cociente para num dividido en 2.
 		si num sin cociente veces 2 es igual a 0 entonces:
+			(Es par.)
 		    preparar escritura con "%d es par\n", num.
 		despues
 		si num sin cociente veces 2 es igual a 1 entonces:
+			(Es impar.)
 		    preparar escritura con "%d es impar\n", num.
 		a continuacion
 	fin
