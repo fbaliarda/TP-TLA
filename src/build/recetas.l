@@ -13,7 +13,7 @@ coma      [,]
 endings   "despues"|"luego"|"a continuacion"|"fin"
 %%
 
-"(".*")"                
+"(".*")"                /*Comment*/;
 "Ingredientes:"         return INGREDIENTS_TOKEN;
 "nuevo entero"          return TO_INT;
 "entero"                return T_INTEGER;
